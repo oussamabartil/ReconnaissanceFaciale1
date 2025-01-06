@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+
+<AnchorPane fx:id="rootPane" prefWidth="800" prefHeight="600" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="bartil.oussama.reconnaissancefaciale1.controlleur.UserController">
+
+   <!-- Title -->
+   <Label layoutX="20" layoutY="20" text="Ajouter un Utilisateur" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+   <!-- Form Fields -->
+   <Label layoutX="20" layoutY="70" text="Nom :" />
+   <TextField fx:id="nameField" layoutX="120" layoutY="65" prefWidth="200" />
+
+   <Label layoutX="20" layoutY="120" text="Email :" />
+   <TextField fx:id="emailField" layoutX="120" layoutY="115" prefWidth="200" />
+
+   <Label layoutX="20" layoutY="170" text="Mot de passe :" />
+   <PasswordField fx:id="passwordField" layoutX="120" layoutY="165" prefWidth="200" />
+
+   <Label layoutX="20" layoutY="220" text="Accès Autorisé :" />
+   <CheckBox fx:id="accessStatusField" layoutX="120" layoutY="215" />
+
+   <!-- Add User Button -->
+   <Button fx:id="addUserButton" layoutX="120" layoutY="280" text="Ajouter Utilisateur" onAction="#addUser" />
+
+   <!-- Camera Controls -->
+   <Label layoutX="400" layoutY="20" text="Caméra :" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+   <ImageView fx:id="imageView" layoutX="400" layoutY="50" fitWidth="300" fitHeight="300" style="-fx-border-color: black;" />
+
+   <Button fx:id="captureButton" layoutX="400" layoutY="370" text="Capturer" onAction="#captureImage" />
+   <Button fx:id="startCameraButton" layoutX="500" layoutY="370" text="Démarrer Caméra" onAction="#startCamera" />
+   <Button fx:id="stopCameraButton" layoutX="650" layoutY="370" text="Arrêter Caméra" onAction="#stopCamera" />
+
+   <!-- Progress and Reset -->
+   <Label fx:id="progressLabel" layoutX="20" layoutY="460" text="0/5 Photos" style="-fx-font-size: 14px;" />
+   <Button fx:id="resetButton" layoutX="120" layoutY="455" text="Réinitialiser" onAction="#resetImages" />
+
+   <!-- Image Previews -->
+   <ImageView fx:id="preview1" layoutX="20" layoutY="500" fitWidth="80" fitHeight="80" />
+   <ImageView fx:id="preview2" layoutX="110" layoutY="500" fitWidth="80" fitHeight="80" />
+   <ImageView fx:id="preview3" layoutX="200" layoutY="500" fitWidth="80" fitHeight="80" />
+   <ImageView fx:id="preview4" layoutX="290" layoutY="500" fitWidth="80" fitHeight="80" />
+   <ImageView fx:id="preview5" layoutX="380" layoutY="500" fitWidth="80" fitHeight="80" />
+
+</AnchorPane>

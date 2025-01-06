@@ -1,0 +1,30 @@
+
+.cards{
+    -fx-background-color: #ffff;
+    -fx-border-color: #C1C1C1;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20px;
+    -fx-view-order:-1000;
+}
+.plus_btn{
+    -fx-background-color: transparent;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #C1C1C1;
+    -fx-border-style: dashed;
+}
+.colored_card{
+    -fx-background-color: linear-gradient(to right,#1A3384,#2B49B3);
+    -fx-background-radius: 10px;
+}
+.uncolored_card{
+    -fx-background-color: #C1C1C1;
+    -fx-background-radius: 10px;
+}
+.icons{
+    -fx-background-color: #7096ff;
+    -fx-opacity: 1.5;
+}
+.backgroundTable{
+    -fx-view-order:122;
+}

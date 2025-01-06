@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.Icon?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="600.0" prefWidth="1025.0" styleClass="parent" stylesheets="@css/dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <AnchorPane prefHeight="667.0" prefWidth="45.0" style="-fx-background-color: #f5f5f0;" styleClass="sidebar" stylesheets="@css/dashboard.css" BorderPane.alignment="CENTER">
+         <children>
+            <Icon content="DEHAZE" layoutX="12.0" layoutY="14.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="14.0" />
+            <VBox layoutY="257.0" prefHeight="86.0" prefWidth="45.0" AnchorPane.bottomAnchor="257.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
+               <children>
+                  <FontAwesomeIconView fill="#2b49b3" glyphName="HOME" selectionEnd="1" size="30">
+                     <VBox.margin>
+                        <Insets left="6.0" />
+                     </VBox.margin>
+                  </FontAwesomeIconView>
+                  <FontAwesomeIconView glyphName="USERS" size="25" styleClass="sidebar_opt">
+                     <VBox.margin>
+                        <Insets left="6.0" top="12.0" />
+                     </VBox.margin>
+                  </FontAwesomeIconView>
+                  <FontAwesomeIconView glyphName="HISTORY" size="25" styleClass="sidebar_opt">
+                     <VBox.margin>
+                        <Insets left="6.0" top="12.0" />
+                     </VBox.margin>
+                  </FontAwesomeIconView>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" style="-fx-background-color: #f3f3f3;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="TOP_CENTER" layoutX="52.0" prefHeight="250.0" prefWidth="850.0" styleClass="pane" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox>
+                     <children>
+                        <Label text="Dashboard" textFill="#2b49b3">
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Separator orientation="VERTICAL" />
+                        <Label layoutX="10.0" layoutY="10.0" text="Bonjour, admin." textFill="#4c4c4c">
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                           <font>
+                              <Font name="Calibri Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="123.0" layoutY="10.0" maxWidth="1.7976931348623157E308" text="7:32 12 Decembre 2024" textFill="#b5b2b2" HBox.hgrow="ALWAYS">
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                           <font>
+                              <Font name="Calibri Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets bottom="30.0" />
+                     </VBox.margin>
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="My Cards" textFill="#4c4c4c">
+                                 <font>
+                                    <Font name="Calibri Bold" size="17.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="15.0" top="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
