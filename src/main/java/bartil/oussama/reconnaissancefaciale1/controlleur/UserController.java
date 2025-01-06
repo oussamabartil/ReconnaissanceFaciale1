@@ -2,17 +2,22 @@ package bartil.oussama.reconnaissancefaciale1.controlleur;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import nu.pattern.OpenCV;
 import org.opencv.core.*;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.videoio.VideoCapture;
+import javafx.event.ActionEvent;
+
 
 import bartil.oussama.reconnaissancefaciale1.dao.entities.User;
 import bartil.oussama.reconnaissancefaciale1.service.UserService;
@@ -47,6 +52,14 @@ public class UserController implements Initializable {
     private int imageCount = 0;
 
     private UserService userService = new UserServiceImplementation();
+
+    // Reference to the parent controller
+    private UserTableController parentController;
+
+    // Setter method to receive parent controller reference
+    public void setParentController(UserTableController parentController) {
+        this.parentController = parentController;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -178,9 +191,19 @@ public class UserController implements Initializable {
 
         if (success) {
             showAlert("Succès", "Utilisateur ajouté avec succès !");
-            resetImages();
+
+            // Refresh the parent table
+            if (parentController != null) {
+                parentController.refreshTable(new ActionEvent()); // Call refresh method
+            }
+
+            // Close the form
+            Stage stage = (Stage) addUserButton.getScene().getWindow();
+            stage.close();
         } else {
             showAlert("Erreur", "Échec de l'ajout de l'utilisateur.");
         }
     }
+
+
 }

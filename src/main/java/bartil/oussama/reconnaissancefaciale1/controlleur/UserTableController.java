@@ -54,18 +54,25 @@ public class UserTableController implements Initializable {
     @FXML
     private TableView<User> tableUsers;
 
+    private UserTableController parentController;
+
+    public void setParentController(UserTableController parentController) {
+        this.parentController = parentController;
+    }
     @FXML
     void addUser(ActionEvent event) {
         try {
-            // Load the FXML file for the add user form
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/bartil/oussama/reconnaissancefaciale1/addUsers.fxml"));
             Parent root = fxmlLoader.load();
 
-            // Create a new stage (window)
+            // Pass a reference of the UserTableController to the UserController
+            UserController userController = fxmlLoader.getController();
+            userController.setParentController(this); // Pass reference
+
             Stage stage = new Stage();
             stage.setTitle("Ajouter un Utilisateur");
             stage.setScene(new Scene(root, 800, 600)); // Set size
-            stage.show(); // Show the window
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
