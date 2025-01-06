@@ -8,13 +8,14 @@
 }
 
 .table-view .column-header {
-    -fx-background-color: linear-gradient(to bottom, #4CAF50, #45A049);
+    -fx-background-color: linear-gradient(to bottom, #4a90e2, #007aff);
     -fx-border-color: transparent;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 14px;
     -fx-alignment: CENTER;
 }
+
 
 .table-view .table-row-cell {
     -fx-background-color: #ffffff, linear-gradient(to bottom, #f9f9f9, #f3f3f3);
@@ -41,8 +42,8 @@
     -fx-border-color: #89C0FF;
     -fx-background-radius: 20;
     -fx-border-radius: 20px;
-
 }
+
 .plus_btn{
     -fx-background-color: transparent;
     -fx-background-radius: 5px;
@@ -50,15 +51,41 @@
     -fx-border-color: #C1C1C1;
     -fx-border-style: dashed;
 }
+
 .colored_card{
     -fx-background-color: linear-gradient(to right,#1A3384,#2B49B3);
     -fx-background-radius: 10px;
 }
+
 .uncolored_card{
     -fx-background-color: #C1C1C1;
     -fx-background-radius: 10px;
 }
+
 .icons{
     -fx-background-color: #7096ff;
     -fx-opacity: 1.5;
+}
+
+.refresh-btn {
+    -fx-background-color: linear-gradient(to bottom, #4a90e2, #007aff);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-padding: 5 15;
+    -fx-border-color: #007aff;
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0, 0, 1);
+}
+
+.refresh-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #007aff, #005ecb);
+    -fx-cursor: hand;
+}
+
+.refresh-btn:pressed {
+    -fx-background-color: #005ecb;
+    -fx-border-color: #005ecb;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 4, 0, 0, 1);
 }
