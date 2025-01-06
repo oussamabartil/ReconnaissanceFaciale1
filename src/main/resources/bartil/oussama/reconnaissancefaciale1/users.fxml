@@ -145,14 +145,14 @@
                   <TableView fx:id="tableUsers" layoutX="0.8" layoutY="47.2" prefHeight="306.0" prefWidth="917.0" stylesheets="@css/users.css" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
                     <columns>
                       <TableColumn fx:id="numUser" prefWidth="80.80005168914795" text="ID" />
-                       <TableColumn fx:id="imageUser" prefWidth="289.59996032714844" text="Photo">
+                       <TableColumn fx:id="imageUser" prefWidth="144.80004119873047" text="Photo">
                           <cellValueFactory>
                              <PropertyValueFactory property="imagePath" />
                           </cellValueFactory>
                        </TableColumn>
-                      <TableColumn fx:id="nameUser" prefWidth="149.5" text="Nom" />
-                        <TableColumn fx:id="emailUser" minWidth="0.0" prefWidth="138.5" text="Email" />
-                        <TableColumn fx:id="accessStatusUser" prefWidth="204.5" text="Access status" />
+                      <TableColumn fx:id="nameUser" prefWidth="219.99990844726562" text="Nom" />
+                        <TableColumn fx:id="emailUser" minWidth="0.0" prefWidth="319.2000427246094" text="Email" />
+                        <TableColumn fx:id="accessStatusUser" prefWidth="101.5999755859375" text="Access status" />
                         <TableColumn fx:id="dateCreationUser" prefWidth="206.5" text="Date de creation" />
                     </columns>
                      <styleClass>

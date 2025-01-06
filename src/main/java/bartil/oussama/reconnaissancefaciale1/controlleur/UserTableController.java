@@ -83,6 +83,30 @@ public class UserTableController implements Initializable {
         dateCreationUser.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
         accessStatusUser.setCellValueFactory(new PropertyValueFactory<>("accessStatus"));
 
+        accessStatusUser.setCellFactory(column -> new TableCell<User, Boolean>() {
+            private final Label iconLabel = new Label();
+
+            @Override
+            protected void updateItem(Boolean accessStatus, boolean empty) {
+                super.updateItem(accessStatus, empty);
+
+                if (empty || accessStatus == null) {
+                    setGraphic(null);
+                } else {
+                    // Apply FontAwesome icons dynamically based on access status
+                    if (accessStatus) {
+                        iconLabel.setText("\uf00c"); // Unicode for FontAwesome 'check' icon
+                        iconLabel.setStyle("-fx-font-family: 'FontAwesome'; -fx-text-fill: green; -fx-font-size: 16px;");
+                    } else {
+                        iconLabel.setText("\uf00d"); // Unicode for FontAwesome 'times' icon
+                        iconLabel.setStyle("-fx-font-family: 'FontAwesome'; -fx-text-fill: red; -fx-font-size: 16px;");
+                    }
+                    setGraphic(iconLabel);
+                }
+            }
+        });
+
+
         // Set up image column to show user image
         imageUser.setCellValueFactory(new PropertyValueFactory<>("imagePath"));
         imageUser.setCellFactory(column -> new TableCell<User, String>() {
