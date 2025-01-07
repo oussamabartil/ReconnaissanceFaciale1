@@ -41,11 +41,20 @@
    <Label fx:id="progressLabel" layoutX="20" layoutY="460" styleClass="progress-label" text="0/5 Photos" />
    <Button fx:id="resetButton" layoutX="120" layoutY="455" onAction="#resetImages" styleClass="form-button" text="Réinitialiser" />
 
-   <!-- Image Previews -->
+   <!-- Image Previews with X Buttons -->
    <ImageView fx:id="preview1" fitHeight="80" fitWidth="80" layoutX="20" layoutY="500" styleClass="preview-image" />
-   <ImageView fx:id="preview2" fitHeight="80" fitWidth="80" layoutX="110" layoutY="500" styleClass="preview-image" />
-   <ImageView fx:id="preview3" fitHeight="80" fitWidth="80" layoutX="200" layoutY="500" styleClass="preview-image" />
-   <ImageView fx:id="preview4" fitHeight="80" fitWidth="80" layoutX="290" layoutY="500" styleClass="preview-image" />
-   <ImageView fx:id="preview5" fitHeight="80" fitWidth="80" layoutX="380" layoutY="500" styleClass="preview-image" />
+   <Button fx:id="delete1" layoutX="110" layoutY="500" text="X" onAction="#deleteImage1" styleClass="delete-button" visible="false" />
+
+   <ImageView fx:id="preview2" fitHeight="80" fitWidth="80" layoutX="140" layoutY="500" styleClass="preview-image" />
+   <Button fx:id="delete2" layoutX="230" layoutY="500" text="X" onAction="#deleteImage2" styleClass="delete-button" visible="false" />
+
+   <ImageView fx:id="preview3" fitHeight="80" fitWidth="80" layoutX="260" layoutY="500" styleClass="preview-image" />
+   <Button fx:id="delete3" layoutX="350" layoutY="500" text="X" onAction="#deleteImage3" styleClass="delete-button" visible="false" />
+
+   <ImageView fx:id="preview4" fitHeight="80" fitWidth="80" layoutX="380" layoutY="500" styleClass="preview-image" />
+   <Button fx:id="delete4" layoutX="470" layoutY="500" text="X" onAction="#deleteImage4" styleClass="delete-button" visible="false" />
+
+   <ImageView fx:id="preview5" fitHeight="80" fitWidth="80" layoutX="500" layoutY="500" styleClass="preview-image" />
+   <Button fx:id="delete5" layoutX="590" layoutY="500" text="X" onAction="#deleteImage5" styleClass="delete-button" visible="false" />
 
 </AnchorPane>

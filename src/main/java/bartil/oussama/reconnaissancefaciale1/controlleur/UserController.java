@@ -43,6 +43,8 @@ public class UserController implements Initializable {
     @FXML private ImageView imageView, preview1, preview2, preview3, preview4, preview5;
     @FXML private Label progressLabel;
     @FXML private Button resetButton, addUserButton;
+    @FXML private Button delete1, delete2, delete3, delete4, delete5;
+
 
     private VideoCapture capture;
     private Mat frame;
@@ -110,6 +112,10 @@ public class UserController implements Initializable {
                 String path = saveImage(resizedFace);
                 imagePaths.add(path);
                 previews.get(imageCount).setImage(new Image(new File(path).toURI().toString()));
+
+                // Show X button for the added image
+                getDeleteButton(imageCount).setVisible(true);
+
                 imageCount++;
                 progressLabel.setText(imageCount + "/5 Photos");
             } else {
@@ -118,13 +124,24 @@ public class UserController implements Initializable {
         }
     }
 
+
     @FXML
     public void resetImages() {
         imageCount = 0;
         imagePaths.clear();
         progressLabel.setText("0/5 Photos");
+
+        // Clear image previews
         previews.forEach(preview -> preview.setImage(null));
+
+        // Hide all delete buttons
+        delete1.setVisible(false);
+        delete2.setVisible(false);
+        delete3.setVisible(false);
+        delete4.setVisible(false);
+        delete5.setVisible(false);
     }
+
 
     private Mat detectAndCropFace(Mat input) {
         Mat gray = new Mat();
@@ -204,6 +221,61 @@ public class UserController implements Initializable {
             showAlert("Erreur", "Échec de l'ajout de l'utilisateur.");
         }
     }
+
+    @FXML
+    void deleteImage1(ActionEvent event) { deleteImage(0); }
+
+    @FXML
+    void deleteImage2(ActionEvent event) { deleteImage(1); }
+
+    @FXML
+    void deleteImage3(ActionEvent event) { deleteImage(2); }
+
+    @FXML
+    void deleteImage4(ActionEvent event) { deleteImage(3); }
+
+    @FXML
+    void deleteImage5(ActionEvent event) { deleteImage(4); }
+
+    // Delete image method
+    private void deleteImage(int index) {
+        if (index < imagePaths.size()) {
+            // Remove image path and preview
+            imagePaths.remove(index);
+            previews.get(index).setImage(null);
+
+            // Hide X button
+            getDeleteButton(index).setVisible(false);
+
+            // Shift images forward
+            for (int i = index; i < imagePaths.size(); i++) {
+                previews.get(i).setImage(previews.get(i + 1).getImage());
+                getDeleteButton(i).setVisible(getDeleteButton(i + 1).isVisible());
+            }
+
+            // Clear last slot and hide its button
+            if (imagePaths.size() < previews.size()) {
+                previews.get(imagePaths.size()).setImage(null);
+                getDeleteButton(imagePaths.size()).setVisible(false);
+            }
+
+            // Update progress label
+            imageCount = imagePaths.size();
+            progressLabel.setText(imageCount + "/5 Photos");
+        }
+    }
+
+    private Button getDeleteButton(int index) {
+        switch (index) {
+            case 0: return delete1;
+            case 1: return delete2;
+            case 2: return delete3;
+            case 3: return delete4;
+            case 4: return delete5;
+            default: return null;
+        }
+    }
+
 
 
 }
