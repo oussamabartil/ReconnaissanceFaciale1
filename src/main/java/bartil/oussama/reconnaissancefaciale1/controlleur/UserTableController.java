@@ -195,7 +195,7 @@ public class UserTableController implements Initializable {
         });
 
 
-
+        modifyUser.setCellFactory(TableButtonFactory.createModifyButton());
         deleteUser.setCellFactory(TableButtonFactory.createDeleteButton());
     }
 
