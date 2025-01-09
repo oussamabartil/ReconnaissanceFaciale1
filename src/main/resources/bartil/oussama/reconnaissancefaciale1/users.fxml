@@ -14,6 +14,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import bartil.oussama.reconnaissancefaciale1.controlleur.TableButtonFactory?>
+
 
 <BorderPane prefHeight="600.0" prefWidth="1025.0" styleClass="parent" stylesheets="@css/dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bartil.oussama.reconnaissancefaciale1.controlleur.UserTableController">
    <left>
@@ -154,6 +156,17 @@
                         <TableColumn fx:id="emailUser" minWidth="0.0" prefWidth="319.2000427246094" text="Email" />
                         <TableColumn fx:id="accessStatusUser" prefWidth="101.5999755859375" text="Access status" />
                         <TableColumn fx:id="dateCreationUser" prefWidth="206.5" text="Date de creation" />
+                       <TableColumn fx:id="modifyUser" prefWidth="80.0" text="Modifier">
+                          <cellFactory>
+                             <TableButtonFactory fx:factory="createModifyButton"/>
+                          </cellFactory>
+                       </TableColumn>
+                       <TableColumn fx:id="deleteUser" prefWidth="80.0" text="Supprimer">
+                          <cellFactory>
+                             <TableButtonFactory fx:factory="createDeleteButton"/>
+                          </cellFactory>
+                       </TableColumn>
+
                     </columns>
                      <styleClass>
                         <String fx:value="table-view" />

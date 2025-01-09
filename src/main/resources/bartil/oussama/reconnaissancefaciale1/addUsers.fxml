@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="rootPane" prefHeight="600" prefWidth="800" stylesheets="@css/AddUsers.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="bartil.oussama.reconnaissancefaciale1.controlleur.UserController">
+<AnchorPane fx:id="rootPane" prefHeight="800" prefWidth="800" stylesheets="@css/AddUsers.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="bartil.oussama.reconnaissancefaciale1.controlleur.UserController">
 
    <!-- Title -->
    <Label layoutX="20" layoutY="20" styleClass="title-label" text="Ajouter un Utilisateur" />
@@ -38,7 +38,7 @@
    <Button fx:id="stopCameraButton" layoutX="650" layoutY="370" onAction="#stopCamera" styleClass="form-button" text="Arrêter Caméra" />
 
    <!-- Progress and Reset -->
-   <Label fx:id="progressLabel" layoutX="20" layoutY="460" styleClass="progress-label" text="0/5 Photos" />
+   <Label fx:id="progressLabel" layoutX="20" layoutY="460" styleClass="progress-label" text="0/11 Photos" />
    <Button fx:id="resetButton" layoutX="120" layoutY="455" onAction="#resetImages" styleClass="form-button" text="Réinitialiser" />
 
    <!-- Image Previews with X Buttons -->
@@ -56,5 +56,23 @@
 
    <ImageView fx:id="preview5" fitHeight="80" fitWidth="80" layoutX="500" layoutY="500" styleClass="preview-image" />
    <Button fx:id="delete5" layoutX="590" layoutY="500" text="X" onAction="#deleteImage5" styleClass="delete-button" visible="false" />
+
+   <ImageView fx:id="preview6" fitHeight="80" fitWidth="80" layoutX="20" layoutY="600" styleClass="preview-image" />
+   <Button fx:id="delete6" layoutX="110" layoutY="600" text="X" onAction="#deleteImage6" styleClass="delete-button" visible="false" />
+
+   <ImageView fx:id="preview7" fitHeight="80" fitWidth="80" layoutX="140" layoutY="600" styleClass="preview-image" />
+   <Button fx:id="delete7" layoutX="230" layoutY="600" text="X" onAction="#deleteImage7" styleClass="delete-button" visible="false" />
+
+   <ImageView fx:id="preview8" fitHeight="80" fitWidth="80" layoutX="260" layoutY="600" styleClass="preview-image" />
+   <Button fx:id="delete8" layoutX="350" layoutY="600" text="X" onAction="#deleteImage8" styleClass="delete-button" visible="false" />
+
+   <ImageView fx:id="preview9" fitHeight="80" fitWidth="80" layoutX="380" layoutY="600" styleClass="preview-image" />
+   <Button fx:id="delete9" layoutX="470" layoutY="600" text="X" onAction="#deleteImage9" styleClass="delete-button" visible="false" />
+
+   <ImageView fx:id="preview10" fitHeight="80" fitWidth="80" layoutX="500" layoutY="600" styleClass="preview-image" />
+   <Button fx:id="delete10" layoutX="590" layoutY="600" text="X" onAction="#deleteImage10" styleClass="delete-button" visible="false" />
+
+   <ImageView fx:id="preview11" fitHeight="80" fitWidth="80" layoutX="620" layoutY="600" styleClass="preview-image" />
+   <Button fx:id="delete11" layoutX="710" layoutY="600" text="X" onAction="#deleteImage11" styleClass="delete-button" visible="false" />
 
 </AnchorPane>

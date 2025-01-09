@@ -29,8 +29,8 @@ public class UserDaoImplementation implements UserDao {
 
     @Override
     public boolean update(User user) {
-        Connection connection=DBSingleton.getConnection();
-        String query = "UPDATE Users SET name = ?, email = ?, image_path = ?, access_status = ? ,password= ? WHERE user_id = ?";
+        Connection connection = DBSingleton.getConnection();
+        String query = "UPDATE Users SET name = ?, email = ?, image_path = ?, access_status = ? , password = ? WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, user.getName());
             stmt.setString(2, user.getEmail());
@@ -44,37 +44,34 @@ public class UserDaoImplementation implements UserDao {
             return false;
         }
     }
-
     @Override
     public boolean delete(User user) {
-        Connection connection=DBSingleton.getConnection();
-        String query = "DELETE FROM Users WHERE user_id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setInt(1, user.getId());
-            return stmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+        return false;
     }
 
     @Override
-    public boolean deleteById(Integer userId) {
-        Connection connection=DBSingleton.getConnection();
-        String query = "DELETE FROM Users WHERE user_id = ?";
+    public boolean deleteById(Integer integer) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(Integer userId) {  // Match Integer, not int
+        Connection connection = DBSingleton.getConnection();
+        String query = "DELETE FROM Users WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setInt(1, userId);
-            return stmt.executeUpdate() > 0;
+            stmt.setInt(1, userId); // Use userId directly
+            return stmt.executeUpdate() > 0; // Return true if rows were deleted
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return false; // Return false if an exception occurs
         }
     }
+
 
     @Override
     public User findById(Integer userId) {
         Connection connection=DBSingleton.getConnection();
-        String query = "SELECT * FROM Users WHERE user_id = ?";
+        String query = "SELECT * FROM Users WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, userId);
             ResultSet rs = stmt.executeQuery();

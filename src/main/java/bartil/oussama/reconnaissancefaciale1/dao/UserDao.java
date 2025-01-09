@@ -4,4 +4,5 @@ import bartil.oussama.reconnaissancefaciale1.dao.entities.User;
 
 public interface UserDao extends Dao<User,Integer> {
 
+    boolean delete(Integer userId);
 }

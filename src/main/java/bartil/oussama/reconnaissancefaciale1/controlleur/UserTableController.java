@@ -56,6 +56,12 @@ public class UserTableController implements Initializable {
 
     private UserTableController parentController;
 
+    @FXML
+    private TableColumn<User, Void> modifyUser;
+
+    @FXML
+    private TableColumn<User, Void> deleteUser;
+
     public void setParentController(UserTableController parentController) {
         this.parentController = parentController;
     }
@@ -150,6 +156,47 @@ public class UserTableController implements Initializable {
 
         // Set today's date
         dateToday.setText(LocalDate.now().toString());
+
+        modifyUser.setCellFactory(column -> new TableCell<User, Void>() {
+            private final Button modifyButton = new Button("Modifier");
+
+            {
+                modifyButton.setOnAction(event -> {
+                    User selectedUser = getTableView().getItems().get(getIndex());
+                    if (selectedUser != null) {
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/bartil/oussama/reconnaissancefaciale1/updateUser.fxml"));
+                            Parent root = loader.load();
+
+                            UpdateUserController controller = loader.getController();
+                            controller.setParentController(UserTableController.this); // Pass current UserTableController
+                            controller.setSelectedUser(selectedUser); // Pass selected user
+
+                            Stage stage = new Stage();
+                            stage.setTitle("Modifier Utilisateur");
+                            stage.setScene(new Scene(root, 800, 600)); // Set size
+                            stage.show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(modifyButton);
+                }
+            }
+        });
+
+
+
+        deleteUser.setCellFactory(TableButtonFactory.createDeleteButton());
     }
 
     private void loadUsers() {
@@ -169,4 +216,7 @@ public class UserTableController implements Initializable {
         loadUsers();
     }
 
+    public void refreshTable() {
+        loadUsers();
+    }
 }

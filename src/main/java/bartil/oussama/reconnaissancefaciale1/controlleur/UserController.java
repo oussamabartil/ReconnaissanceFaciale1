@@ -88,12 +88,39 @@ public class UserController implements Initializable {
     }
 
     private void captureFrame() {
+        CascadeClassifier faceCascade = new CascadeClassifier(
+                new File("opencv/haarcascade_frontalface_default.xml").getAbsolutePath()
+        );
+
         while (cameraActive) {
             capture.read(frame);
             if (!frame.empty()) {
+                // Convert frame to grayscale
+                Mat gray = new Mat();
+                Imgproc.cvtColor(frame, gray, Imgproc.COLOR_BGR2GRAY);
+                Imgproc.equalizeHist(gray, gray);
+
+                // Detect faces
+                MatOfRect faces = new MatOfRect();
+                faceCascade.detectMultiScale(gray, faces, 1.1, 5, 0,
+                        new Size(30, 30), new Size(300, 300));
+
+                // Draw rectangles around detected faces
+                for (Rect rect : faces.toArray()) {
+                    Imgproc.rectangle(frame,                          // Image
+                            new Point(rect.x, rect.y),        // Top-left point
+                            new Point(rect.x + rect.width,    // Bottom-right point
+                                    rect.y + rect.height),
+                            new Scalar(0, 255, 0),            // Green color
+                            2);                               // Thickness
+                }
+
+                // Encode the frame with rectangles for displaying
                 MatOfByte buffer = new MatOfByte();
                 Imgcodecs.imencode(".png", frame, buffer);
                 Image image = new Image(new ByteArrayInputStream(buffer.toArray()));
+
+                // Update UI with the image
                 Platform.runLater(() -> imageView.setImage(image));
             }
         }

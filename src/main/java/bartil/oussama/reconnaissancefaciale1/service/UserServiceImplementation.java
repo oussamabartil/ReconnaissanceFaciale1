@@ -29,13 +29,13 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public void updateUser(User user) {
-        userDao.update(user);
+    public boolean updateUser(User user) {
+        return userDao.update(user); // Pass the user object to DAO
     }
 
     @Override
-    public void deleteUser(User user) {
-        userDao.delete(user);
+    public boolean deleteUser(int userId) {
+        return userDao.delete(userId); // Auto-boxes int to Integer automatically
     }
 
     // Method to crop and save the image
