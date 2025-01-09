@@ -34,10 +34,10 @@ public class UpdateUserController implements Initializable {
     @FXML private TextField nameField, emailField;
     @FXML private PasswordField passwordField;
     @FXML private CheckBox accessStatusField;
-    @FXML private ImageView imageView, preview1, preview2, preview3, preview4, preview5;
+    @FXML private ImageView imageView, preview1, preview2, preview3, preview4, preview5, preview6, preview7, preview8, preview9, preview10, preview11;
     @FXML private Label progressLabel;
     @FXML private Button resetButton, updateUserButton;
-    @FXML private Button delete1, delete2, delete3, delete4, delete5;
+    @FXML private Button delete1, delete2, delete3, delete4, delete5, delete6, delete7, delete8, delete9, delete10, delete11;
 
     private VideoCapture capture;
     private Mat frame;
@@ -69,7 +69,7 @@ public class UpdateUserController implements Initializable {
         for (ImageView preview : previews) {
             preview.setImage(null);
         }
-        for (Button deleteButton : List.of(delete1, delete2, delete3, delete4, delete5)) {
+        for (Button deleteButton : List.of(delete1, delete2, delete3, delete4, delete5, delete6, delete7, delete8, delete9, delete10, delete11)) {
             deleteButton.setVisible(false);
         }
 
@@ -91,17 +91,17 @@ public class UpdateUserController implements Initializable {
 
         // Update image count and progress label
         imageCount = imagePaths.size();
-        progressLabel.setText(imageCount + "/5 Photos");
+        progressLabel.setText(imageCount + "/11 Photos");
     }
 
 
     @FXML
     public void startCamera() {
         if (!cameraActive) {
-            // Try to open the camera with different backends
+            // Try to open the camera
             boolean cameraOpened = capture.open(0, Videoio.CAP_DSHOW) || capture.open(0, Videoio.CAP_MSMF);
             if (!cameraOpened) {
-                showAlert("Erreur", "Impossible d'ouvrir la caméra.");
+                showAlert("Erreur", "Impossible d'ouvrir la caméra. Veuillez vérifier qu'aucune autre application n'utilise la caméra.");
                 return;
             }
 
@@ -109,6 +109,7 @@ public class UpdateUserController implements Initializable {
             new Thread(this::captureFrame).start();
         }
     }
+
 
 
     private void captureFrame() {
@@ -142,15 +143,18 @@ public class UpdateUserController implements Initializable {
     public void stopCamera() {
         if (cameraActive) {
             cameraActive = false;
-            capture.release();
-            imageView.setImage(null);
+            if (capture.isOpened()) {
+                capture.release(); // Release the camera resource
+                System.out.println("Camera stopped and resources released.");
+            }
+            imageView.setImage(null); // Clear the live preview
         }
     }
 
     @FXML
     public void captureImage() throws IOException {
         // Allow capturing a new photo only if space is available
-        if (imagePaths.size() < 5 && !frame.empty()) {
+        if (imagePaths.size() < 11 && !frame.empty()) {
             Mat face = detectAndCropFace(frame);
             if (face != null) {
                 String path = saveImage(face);
@@ -161,12 +165,12 @@ public class UpdateUserController implements Initializable {
                 previews.get(nextSlot).setImage(new Image(new File(path).toURI().toString()));
                 getDeleteButton(nextSlot).setVisible(true);
 
-                progressLabel.setText(imagePaths.size() + "/5 Photos");
+                progressLabel.setText(imagePaths.size() + "/11 Photos");
             } else {
                 showAlert("Erreur", "Aucun visage détecté.");
             }
         } else {
-            showAlert("Erreur", "Vous avez déjà atteint la limite de 5 photos.");
+            showAlert("Erreur", "Vous avez déjà atteint la limite de 11 photos.");
         }
     }
 
@@ -192,7 +196,7 @@ public class UpdateUserController implements Initializable {
     public void resetImages() {
         // Clear all image paths, previews, and buttons
         imagePaths.clear();
-        progressLabel.setText("0/5 Photos");
+        progressLabel.setText("0/11 Photos");
         imageCount = 0;
 
         // Reset image previews and hide delete buttons
@@ -216,15 +220,19 @@ public class UpdateUserController implements Initializable {
         selectedUser.setEmail(emailField.getText());
         selectedUser.setPassword(passwordField.getText());
         selectedUser.setAccessStatus(accessStatusField.isSelected());
-        selectedUser.setImagePath(String.join(",", imagePaths));
+
+        // Join the valid image paths
+        String validImagePaths = String.join(",", imagePaths);
+        selectedUser.setImagePath(validImagePaths);
 
         boolean success = userService.updateUser(selectedUser);
 
         if (success) {
             showAlert("Succès", "Utilisateur mis à jour avec succès !");
             if (parentController != null) {
-                parentController.refreshTable(); // Refresh the table in the parent controller
+                parentController.refreshTable(); // Refresh parent table
             }
+            stopCamera(); // Stop the camera before closing
             closeWindow();
         } else {
             showAlert("Erreur", "Échec de la mise à jour de l'utilisateur.");
@@ -234,7 +242,8 @@ public class UpdateUserController implements Initializable {
 
     @FXML
     public void cancelUpdate() {
-        closeWindow();
+        stopCamera(); // Ensure camera is stopped
+        closeWindow(); // Close the window
     }
 
     private void closeWindow() {
@@ -267,6 +276,36 @@ public class UpdateUserController implements Initializable {
         deleteImage(4);
     }
 
+    @FXML
+    public void deleteImage6() {
+        deleteImage(5);
+    }
+
+    @FXML
+    public void deleteImage7() {
+        deleteImage(6);
+    }
+
+    @FXML
+    public void deleteImage8() {
+        deleteImage(7);
+    }
+
+    @FXML
+    public void deleteImage9() {
+        deleteImage(8);
+    }
+
+    @FXML
+    public void deleteImage10() {
+        deleteImage(9);
+    }
+
+    @FXML
+    public void deleteImage11() {
+        deleteImage(10);
+    }
+
     private void deleteImage(int index) {
         if (index < imagePaths.size()) {
             imagePaths.remove(index); // Remove the photo from the list
@@ -285,7 +324,7 @@ public class UpdateUserController implements Initializable {
                 getDeleteButton(imagePaths.size()).setVisible(false);
             }
 
-            progressLabel.setText(imagePaths.size() + "/5 Photos");
+            progressLabel.setText(imagePaths.size() + "/11 Photos");
         }
     }
 
@@ -296,6 +335,12 @@ public class UpdateUserController implements Initializable {
             case 2 -> delete3;
             case 3 -> delete4;
             case 4 -> delete5;
+            case 5 -> delete6;
+            case 6 -> delete7;
+            case 7 -> delete8;
+            case 8 -> delete9;
+            case 9 -> delete10;
+            case 10 -> delete11;
             default -> null;
         };
     }
@@ -315,6 +360,13 @@ public class UpdateUserController implements Initializable {
         cameraActive = false;
 
         // Preview image views
-        previews = List.of(preview1, preview2, preview3, preview4, preview5);
+        previews = List.of(preview1, preview2, preview3, preview4, preview5, preview6, preview7, preview8, preview9, preview10, preview11);
+
+        // Stop camera when the window is closed
+        Platform.runLater(() -> {
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.setOnCloseRequest(event -> stopCamera());
+        });
     }
+
 }

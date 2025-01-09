@@ -40,10 +40,10 @@ public class UserController implements Initializable {
     @FXML private TextField nameField, emailField;
     @FXML private PasswordField passwordField;
     @FXML private CheckBox accessStatusField;
-    @FXML private ImageView imageView, preview1, preview2, preview3, preview4, preview5;
+    @FXML private ImageView imageView, preview1, preview2, preview3, preview4, preview5,preview6,preview7,preview8,preview9,preview10,preview11;
     @FXML private Label progressLabel;
     @FXML private Button resetButton, addUserButton;
-    @FXML private Button delete1, delete2, delete3, delete4, delete5;
+    @FXML private Button delete1, delete2, delete3, delete4, delete5, delete6, delete7, delete8, delete9, delete10, delete11;
 
 
     private VideoCapture capture;
@@ -71,7 +71,13 @@ public class UserController implements Initializable {
         cameraActive = false;
 
         // Preview image views
-        previews = List.of(preview1, preview2, preview3, preview4, preview5);
+        previews = List.of(preview1, preview2, preview3, preview4, preview5, preview6, preview7, preview8, preview9, preview10, preview11);
+
+        // Stop camera when the window is closed
+        Platform.runLater(() -> {
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.setOnCloseRequest(event -> stopCamera());
+        });
     }
 
     @FXML
@@ -128,7 +134,7 @@ public class UserController implements Initializable {
 
     @FXML
     public void captureImage() throws IOException {
-        if (imageCount < 5 && !frame.empty()) {
+        if (imageCount < 11 && !frame.empty()) {
             Mat face = detectAndCropFace(frame);
             if (face != null) {
                 // Resize the face to 160x160
@@ -144,7 +150,7 @@ public class UserController implements Initializable {
                 getDeleteButton(imageCount).setVisible(true);
 
                 imageCount++;
-                progressLabel.setText(imageCount + "/5 Photos");
+                progressLabel.setText(imageCount + "/11 Photos");
             } else {
                 showAlert("Erreur", "Aucun visage détecté.");
             }
@@ -156,7 +162,7 @@ public class UserController implements Initializable {
     public void resetImages() {
         imageCount = 0;
         imagePaths.clear();
-        progressLabel.setText("0/5 Photos");
+        progressLabel.setText("0/11 Photos");
 
         // Clear image previews
         previews.forEach(preview -> preview.setImage(null));
@@ -167,6 +173,12 @@ public class UserController implements Initializable {
         delete3.setVisible(false);
         delete4.setVisible(false);
         delete5.setVisible(false);
+        delete6.setVisible(false);
+        delete7.setVisible(false);
+        delete8.setVisible(false);
+        delete9.setVisible(false);
+        delete10.setVisible(false);
+        delete11.setVisible(false);
     }
 
 
@@ -205,8 +217,11 @@ public class UserController implements Initializable {
     public void stopCamera() {
         if (cameraActive) {
             cameraActive = false;
-            capture.release();
-            imageView.setImage(null);
+            if (capture.isOpened()) {
+                capture.release(); // Libérer la caméra
+                System.out.println("Caméra arrêtée et libérée.");
+            }
+            imageView.setImage(null); // Réinitialiser l'image de la caméra
         }
     }
 
@@ -218,8 +233,8 @@ public class UserController implements Initializable {
         String password = passwordField.getText();
         boolean accessStatus = accessStatusField.isSelected();
 
-        if (name.isEmpty() || email.isEmpty() || password.isEmpty() || imagePaths.size() < 5) {
-            showAlert("Erreur", "Veuillez remplir tous les champs et capturer 5 photos.");
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty() || imagePaths.size() < 11) {
+            showAlert("Erreur", "Veuillez remplir tous les champs et capturer 11 photos.");
             return;
         }
 
@@ -264,6 +279,24 @@ public class UserController implements Initializable {
     @FXML
     void deleteImage5(ActionEvent event) { deleteImage(4); }
 
+    @FXML
+    void deleteImage6(ActionEvent event) { deleteImage(5); }
+
+    @FXML
+    void deleteImage7(ActionEvent event) { deleteImage(6); }
+
+    @FXML
+    void deleteImage8(ActionEvent event) { deleteImage(7); }
+
+    @FXML
+    void deleteImage9(ActionEvent event) { deleteImage(8); }
+
+    @FXML
+    void deleteImage10(ActionEvent event) { deleteImage(9); }
+
+    @FXML
+    void deleteImage11(ActionEvent event) { deleteImage(10); }
+
     // Delete image method
     private void deleteImage(int index) {
         if (index < imagePaths.size()) {
@@ -288,7 +321,7 @@ public class UserController implements Initializable {
 
             // Update progress label
             imageCount = imagePaths.size();
-            progressLabel.setText(imageCount + "/5 Photos");
+            progressLabel.setText(imageCount + "/11 Photos");
         }
     }
 
@@ -299,6 +332,12 @@ public class UserController implements Initializable {
             case 2: return delete3;
             case 3: return delete4;
             case 4: return delete5;
+            case 5: return delete6;
+            case 6: return delete7;
+            case 7: return delete8;
+            case 8: return delete9;
+            case 9: return delete10;
+            case 10: return delete11;
             default: return null;
         }
     }

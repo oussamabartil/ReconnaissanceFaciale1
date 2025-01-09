@@ -77,7 +77,7 @@ public class UserTableController implements Initializable {
 
             Stage stage = new Stage();
             stage.setTitle("Ajouter un Utilisateur");
-            stage.setScene(new Scene(root, 800, 600)); // Set size
+            stage.setScene(new Scene(root, 800, 700)); // Set size
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -174,7 +174,7 @@ public class UserTableController implements Initializable {
 
                             Stage stage = new Stage();
                             stage.setTitle("Modifier Utilisateur");
-                            stage.setScene(new Scene(root, 800, 600)); // Set size
+                            stage.setScene(new Scene(root, 800, 700)); // Set size
                             stage.show();
                         } catch (IOException e) {
                             e.printStackTrace();
