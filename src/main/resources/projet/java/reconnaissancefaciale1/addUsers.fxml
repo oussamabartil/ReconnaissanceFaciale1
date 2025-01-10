@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="rootPane" prefHeight="1200" prefWidth="800" stylesheets="@css/AddUsers.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="projet.java.reconnaissancefaciale1.controlleur.UserController">
+
+   <!-- Title -->
+   <Label layoutX="20" layoutY="20" styleClass="title-label" text="Ajouter un Utilisateur" />
+
+   <!-- Form Fields -->
+   <Label layoutX="20" layoutY="70" styleClass="form-label" text="Nom :" />
+   <TextField fx:id="nameField" layoutX="120" layoutY="65" prefWidth="200" styleClass="form-textfield" />
+
+   <Label layoutX="20" layoutY="120" styleClass="form-label" text="Email :" />
+   <TextField fx:id="emailField" layoutX="120" layoutY="115" prefWidth="200" styleClass="form-textfield" />
+
+   <Label layoutX="20" layoutY="170" styleClass="form-label" text="Mot de passe :" />
+   <PasswordField fx:id="passwordField" layoutX="120" layoutY="165" prefWidth="200" styleClass="form-textfield" />
+
+   <Label layoutX="20" layoutY="220" styleClass="form-label" text="Accès Autorisé :" />
+   <CheckBox fx:id="accessStatusField" layoutX="130.0" layoutY="220.0" styleClass="form-checkbox" />
+
+   <!-- Add User Button -->
+   <Button fx:id="addUserButton" layoutX="120" layoutY="280" onAction="#addUser" styleClass="form-button" text="Ajouter Utilisateur" />
+
+   <!-- Camera Controls -->
+   <Label layoutX="400" layoutY="20" styleClass="camera-label" text="Caméra :" />
+   <ImageView fx:id="imageView" fitHeight="300" fitWidth="300" layoutX="400" layoutY="50" styleClass="camera-preview" />
+
+   <Button fx:id="captureButton" layoutX="400" layoutY="370" onAction="#captureImage" styleClass="form-button" text="Capturer" />
+   <Button fx:id="startCameraButton" layoutX="500" layoutY="370" onAction="#startCamera" styleClass="form-button" text="Démarrer Caméra" />
+   <Button fx:id="stopCameraButton" layoutX="650" layoutY="370" onAction="#stopCamera" styleClass="form-button" text="Arrêter Caméra" />
+
+   <!-- Progress and Reset -->
+   <Label fx:id="progressLabel" layoutX="20" layoutY="460" styleClass="progress-label" text="0/11 Photos" />
+   <Button fx:id="resetButton" layoutX="120" layoutY="455" onAction="#resetImages" styleClass="form-button" text="Réinitialiser" />
+
+   <!-- Image Previews with X Buttons -->
+   <ImageView fx:id="preview1" fitHeight="80" fitWidth="80" layoutX="20" layoutY="500" styleClass="preview-image" />
+   <Button fx:id="delete1" layoutX="110" layoutY="500" text="X" onAction="#deleteImage1" styleClass="delete-button" visible="false" />
+
+   <ImageView fx:id="preview2" fitHeight="80" fitWidth="80" layoutX="140" layoutY="500" styleClass="preview-image" />
+   <Button fx:id="delete2" layoutX="230" layoutY="500" text="X" onAction="#deleteImage2" styleClass="delete-button" visible="false" />
+
+   <ImageView fx:id="preview3" fitHeight="80" fitWidth="80" layoutX="260" layoutY="500" styleClass="preview-image" />
+   <Button fx:id="delete3" layoutX="350" layoutY="500" text="X" onAction="#deleteImage3" styleClass="delete-button" visible="false" />
+
+   <ImageView fx:id="preview4" fitHeight="80" fitWidth="80" layoutX="380" layoutY="500" styleClass="preview-image" />
+   <Button fx:id="delete4" layoutX="470" layoutY="500" text="X" onAction="#deleteImage4" styleClass="delete-button" visible="false" />
+
+   <ImageView fx:id="preview5" fitHeight="80" fitWidth="80" layoutX="500" layoutY="500" styleClass="preview-image" />
+   <Button fx:id="delete5" layoutX="590" layoutY="500" text="X" onAction="#deleteImage5" styleClass="delete-button" visible="false" />
+
+   <ImageView fx:id="preview6" fitHeight="80" fitWidth="80" layoutX="20" layoutY="600" styleClass="preview-image" />
+   <Button fx:id="delete6" layoutX="110" layoutY="600" text="X" onAction="#deleteImage6" styleClass="delete-button" visible="false" />
+
+   <ImageView fx:id="preview7" fitHeight="80" fitWidth="80" layoutX="140" layoutY="600" styleClass="preview-image" />
+   <Button fx:id="delete7" layoutX="230" layoutY="600" text="X" onAction="#deleteImage7" styleClass="delete-button" visible="false" />
+
+   <ImageView fx:id="preview8" fitHeight="80" fitWidth="80" layoutX="260" layoutY="600" styleClass="preview-image" />
+   <Button fx:id="delete8" layoutX="350" layoutY="600" text="X" onAction="#deleteImage8" styleClass="delete-button" visible="false" />
+
+   <ImageView fx:id="preview9" fitHeight="80" fitWidth="80" layoutX="380" layoutY="600" styleClass="preview-image" />
+   <Button fx:id="delete9" layoutX="470" layoutY="600" text="X" onAction="#deleteImage9" styleClass="delete-button" visible="false" />
+
+   <ImageView fx:id="preview10" fitHeight="80" fitWidth="80" layoutX="500" layoutY="600" styleClass="preview-image" />
+   <Button fx:id="delete10" layoutX="590" layoutY="600" text="X" onAction="#deleteImage10" styleClass="delete-button" visible="false" />
+
+   <ImageView fx:id="preview11" fitHeight="80" fitWidth="80" layoutX="620" layoutY="600" styleClass="preview-image" />
+   <Button fx:id="delete11" layoutX="710" layoutY="600" text="X" onAction="#deleteImage11" styleClass="delete-button" visible="false" />
+
+</AnchorPane>
