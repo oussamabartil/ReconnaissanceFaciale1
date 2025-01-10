@@ -6,6 +6,7 @@ import bartil.oussama.reconnaissancefaciale1.service.UserServiceImplementation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -218,5 +219,22 @@ public class UserTableController implements Initializable {
 
     public void refreshTable() {
         loadUsers();
+    }
+
+    public void openRealTimePage(Event event) {
+        try {
+            // Load the real-time face recognition FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/bartil/oussama/reconnaissancefaciale1/real_time_face_recognition.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage for the real-time page
+            Stage stage = new Stage();
+            stage.setTitle("Real-Time Face Recognition");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
