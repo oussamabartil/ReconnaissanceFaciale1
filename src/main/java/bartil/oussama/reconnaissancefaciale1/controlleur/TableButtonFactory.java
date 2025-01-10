@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -23,22 +24,18 @@ public class TableButtonFactory {
                     private final Button modifyButton = new Button("Modifier");
 
                     {
+                        modifyButton.getStyleClass().add("modify"); // Add CSS class
+                        
                         modifyButton.setOnAction(event -> {
-                            // Obtenir l'utilisateur sélectionné dans la ligne
                             User selectedUser = (User) getTableView().getItems().get(getIndex());
 
                             try {
-                                // Charger la page de modification
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/bartil/oussama/reconnaissancefaciale1/updateUser.fxml"));
                                 Parent root = loader.load();
 
-                                // Récupérer le contrôleur de la page de modification
                                 UpdateUserController controller = loader.getController();
-
-                                // Passer l'utilisateur sélectionné au contrôleur
                                 controller.setSelectedUser(selectedUser);
 
-                                // Créer une nouvelle fenêtre pour la modification
                                 Stage stage = new Stage();
                                 stage.setTitle("Modifier Utilisateur");
                                 stage.setScene(new Scene(root));
@@ -48,7 +45,6 @@ public class TableButtonFactory {
                                 e.printStackTrace();
                             }
                         });
-
                     }
 
                     @Override
@@ -74,10 +70,12 @@ public class TableButtonFactory {
                     private final Button deleteButton = new Button("Supprimer");
 
                     {
+                        deleteButton.getStyleClass().add("delete"); // Apply CSS class
+
+
                         deleteButton.setOnAction(event -> {
                             T user = getTableView().getItems().get(getIndex());
 
-                            // Confirm deletion with the user
                             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                             alert.setTitle("Confirmation");
                             alert.setHeaderText("Supprimer Utilisateur");
@@ -85,14 +83,12 @@ public class TableButtonFactory {
 
                             alert.showAndWait().ifPresent(response -> {
                                 if (response == ButtonType.OK) {
-                                    // Proceed with deletion
                                     if (user instanceof User) {
                                         UserService userService = new UserServiceImplementation();
-                                        User selectedUser = (User) getTableView().getItems().get(getIndex()); // Cast the object to User
-                                        boolean success = userService.deleteUser(selectedUser.getId()); // Use the User object
+                                        User selectedUser = (User) getTableView().getItems().get(getIndex());
+                                        boolean success = userService.deleteUser(selectedUser.getId());
 
                                         if (success) {
-                                            // Remove user from the table
                                             getTableView().getItems().remove(user);
                                             System.out.println("Utilisateur supprimé avec succès !");
                                         } else {
@@ -102,7 +98,6 @@ public class TableButtonFactory {
                                 }
                             });
                         });
-
                     }
 
                     @Override
@@ -118,4 +113,7 @@ public class TableButtonFactory {
             }
         };
     }
+
+
+
 }

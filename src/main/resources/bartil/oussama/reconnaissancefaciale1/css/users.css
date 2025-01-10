@@ -89,3 +89,44 @@
     -fx-border-color: #005ecb;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 4, 0, 0, 1);
 }
+
+/* General Style for Buttons */
+.button {
+    -fx-font-size: 14px;          /* Adjust font size */
+    -fx-padding: 5 15;           /* Adjust padding for better appearance */
+    -fx-border-radius: 5;        /* Rounded corners */
+    -fx-background-radius: 5;    /* Rounded corners for background */
+    -fx-cursor: hand;            /* Pointer cursor on hover */
+    -fx-font-weight: bold;       /* Bold text for better readability */
+    -fx-text-fill: white;        /* Default text color */
+}
+
+/* Modifier Button */
+.button.modify {
+    -fx-background-color: #28A745 !important; /* Bright green */
+    -fx-border-color: #218838 !important;     /* Dark green */
+    -fx-text-fill: white !important;          /* White text */
+}
+
+/* Hover Effect for Modifier Button */
+.button.modify:hover {
+    -fx-background-color: #218838; /* Slightly darker green on hover */
+}
+
+/* Supprimer Button */
+.button.delete {
+    -fx-background-color: #DC3545; /* Bright red background */
+    -fx-border-color: #C82333;     /* Darker red border */
+    -fx-text-fill: white;          /* White text */
+}
+
+/* Hover Effect for Supprimer Button */
+.button.delete:hover {
+    -fx-background-color: #C82333; /* Slightly darker red on hover */
+}
+
+/* Focus Effects (Optional) */
+.button:focused {
+    -fx-border-width: 2;          /* Highlighted border when focused */
+    -fx-border-color: #0078D7;    /* Blue border for focus */
+}

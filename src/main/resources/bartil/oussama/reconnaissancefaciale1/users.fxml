@@ -14,10 +14,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+
 <?import bartil.oussama.reconnaissancefaciale1.controlleur.TableButtonFactory?>
 
-
-<BorderPane prefHeight="600.0" prefWidth="1025.0" styleClass="parent" stylesheets="@css/dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bartil.oussama.reconnaissancefaciale1.controlleur.UserTableController">
+<BorderPane prefHeight="800.0" prefWidth="1500.0" styleClass="parent" stylesheets="@css/dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bartil.oussama.reconnaissancefaciale1.controlleur.UserTableController">
    <left>
       <AnchorPane prefHeight="667.0" prefWidth="45.0" style="-fx-background-color: #f5f5f0;" styleClass="sidebar" stylesheets="@css/dashboard.css" BorderPane.alignment="CENTER">
          <children>
@@ -29,6 +29,11 @@
                      </VBox.margin>
                   </FontAwesomeIconView>
                   <FontAwesomeIconView fill="#2b49b3" glyphName="USERS" size="25">
+                     <VBox.margin>
+                        <Insets left="6.0" top="12.0" />
+                     </VBox.margin>
+                  </FontAwesomeIconView>
+                  <FontAwesomeIconView fx:id="cameraIcon" glyphName="CAMERA" size="25" styleClass="sidebar_opt" onMouseClicked="#openRealTimePage">
                      <VBox.margin>
                         <Insets left="6.0" top="12.0" />
                      </VBox.margin>
@@ -78,7 +83,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox prefHeight="134.0" prefWidth="898.0" VBox.vgrow="ALWAYS">
+                  <HBox prefHeight="153.0" prefWidth="1373.0" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
@@ -144,18 +149,18 @@
             </VBox>
             <AnchorPane layoutX="31.2" layoutY="245.0" prefHeight="362.0" prefWidth="918.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="31.0">
                <children>
-                  <TableView fx:id="tableUsers" layoutX="0.8" layoutY="47.2" prefHeight="306.0" prefWidth="917.0" stylesheets="@css/users.css" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
+                  <TableView fx:id="tableUsers" layoutX="2.4" layoutY="52.8" prefHeight="450.0" prefWidth="1390.0" stylesheets="@css/users.css" AnchorPane.bottomAnchor="-141.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="53.0">
                     <columns>
                       <TableColumn fx:id="numUser" prefWidth="80.80005168914795" text="ID" />
-                       <TableColumn fx:id="imageUser" prefWidth="144.80004119873047" text="Photo">
+                       <TableColumn fx:id="imageUser" prefWidth="162.66665649414062" text="Photo">
                           <cellValueFactory>
                              <PropertyValueFactory property="imagePath" />
                           </cellValueFactory>
                        </TableColumn>
-                      <TableColumn fx:id="nameUser" prefWidth="219.99990844726562" text="Nom" />
-                        <TableColumn fx:id="emailUser" minWidth="0.0" prefWidth="319.2000427246094" text="Email" />
-                        <TableColumn fx:id="accessStatusUser" prefWidth="101.5999755859375" text="Access status" />
-                        <TableColumn fx:id="dateCreationUser" prefWidth="206.5" text="Date de creation" />
+                      <TableColumn fx:id="nameUser" prefWidth="282.933349609375" text="Nom" />
+                        <TableColumn fx:id="emailUser" minWidth="0.0" prefWidth="312.79998779296875" text="Email" />
+                        <TableColumn fx:id="accessStatusUser" prefWidth="134.66668701171875" text="Access status" />
+                        <TableColumn fx:id="dateCreationUser" prefWidth="175.46649169921875" text="Date de creation" />
                        <TableColumn fx:id="modifyUser" prefWidth="80.0" text="Modifier">
                           <cellFactory>
                              <TableButtonFactory fx:factory="createModifyButton"/>
@@ -173,7 +178,7 @@
                         <String fx:value="table-row-cell" />
                      </styleClass>
                   </TableView>
-                  <Button layoutX="786.0" layoutY="4.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="26.0" prefWidth="109.0" styleClass="refresh-btn" stylesheets="@css/users.css" text="Refresh" />
+                  <Button layoutX="1245.0" layoutY="6.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="26.0" prefWidth="109.0" styleClass="refresh-btn" stylesheets="@css/users.css" text="Refresh" />
                </children>
             </AnchorPane>
          </children>

@@ -6,6 +6,7 @@ module bartil.oussama.reconnaissancefaciale1 {
         requires opencv;
         requires java.sql;
     requires java.desktop;
+    requires org.json;
 
     opens bartil.oussama.reconnaissancefaciale1.dao.entities to javafx.base;
         opens bartil.oussama.reconnaissancefaciale1 to javafx.fxml;
